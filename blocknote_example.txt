@@ -1,0 +1,228 @@
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/README.md
+================================================
+# TipTap extension (arrow InputRule)
+
+This example shows how to set up a BlockNote editor with a TipTap extension that registers an InputRule to convert `->` into `→`.
+
+**Try it out:** Type `->` anywhere in the editor and see how it's automatically converted to a single arrow unicode character.
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/index.html
+================================================
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TipTap extension (arrow InputRule)</title>
+    <script>
+      <!-- AUTO-GENERATED FILE, DO NOT EDIT DIRECTLY -->
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/main.tsx
+================================================
+// AUTO-GENERATED FILE, DO NOT EDIT DIRECTLY
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./src/App.jsx";
+
+const root = createRoot(document.getElementById("root")!);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/package.json
+================================================
+{
+  "name": "@blocknote/example-extensions-tiptap-arrow-conversion",
+  "description": "AUTO-GENERATED FILE, DO NOT EDIT DIRECTLY",
+  "type": "module",
+  "private": true,
+  "version": "0.12.4",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build:prod": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@blocknote/ariakit": "latest",
+    "@blocknote/core": "latest",
+    "@blocknote/mantine": "latest",
+    "@blocknote/react": "latest",
+    "@blocknote/shadcn": "latest",
+    "@mantine/core": "^8.3.11",
+    "@mantine/hooks": "^8.3.11",
+    "@mantine/utils": "^6.0.22",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "@tiptap/core": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.3",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^5.4.20"
+  }
+}
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/tsconfig.json
+================================================
+{
+  "__comment": "AUTO-GENERATED FILE, DO NOT EDIT DIRECTLY",
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "composite": true
+  },
+  "include": [
+    "."
+  ],
+  "__ADD_FOR_LOCAL_DEV_references": [
+    {
+      "path": "../../../packages/core/"
+    },
+    {
+      "path": "../../../packages/react/"
+    }
+  ]
+}
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/vite.config.ts
+================================================
+// AUTO-GENERATED FILE, DO NOT EDIT DIRECTLY
+import react from "@vitejs/plugin-react";
+import * as fs from "fs";
+import * as path from "path";
+import { defineConfig } from "vite";
+// import eslintPlugin from "vite-plugin-eslint";
+// https://vitejs.dev/config/
+export default defineConfig((conf) => ({
+  plugins: [react()],
+  optimizeDeps: {},
+  build: {
+    sourcemap: true,
+  },
+  resolve: {
+    alias:
+      conf.command === "build" ||
+      !fs.existsSync(path.resolve(__dirname, "../../packages/core/src"))
+        ? {}
+        : ({
+            // Comment out the lines below to load a built version of blocknote
+            // or, keep as is to load live from sources with live reload working
+            "@blocknote/core": path.resolve(
+              __dirname,
+              "../../packages/core/src/"
+            ),
+            "@blocknote/react": path.resolve(
+              __dirname,
+              "../../packages/react/src/"
+            ),
+          } as any),
+  },
+}));
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/.bnexample.json
+================================================
+{
+  "playground": true,
+  "docs": true,
+  "author": "komsenapati",
+  "tags": ["Extension"],
+  "pro": true,
+  "dependencies": {
+    "@tiptap/core": "^3.13.0"
+  }
+}
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/src/App.tsx
+================================================
+import "@blocknote/core/fonts/inter.css";
+import { useCreateBlockNote } from "@blocknote/react";
+import { BlockNoteView } from "@blocknote/mantine";
+import "@blocknote/mantine/style.css";
+
+import { ArrowConversionExtension } from "./ArrowConversionExtension";
+
+export default function App() {
+  // Creates a new editor instance.
+  const editor = useCreateBlockNote({
+    _tiptapOptions: {
+      extensions: [ArrowConversionExtension],
+    },
+  });
+
+  // Renders the editor instance using a React component.
+  return <BlockNoteView editor={editor} />;
+}
+
+
+
+================================================
+FILE: examples/08-extensions/01-tiptap-arrow-conversion/src/ArrowConversionExtension.ts
+================================================
+import { Extension } from "@tiptap/core";
+
+export const ArrowConversionExtension = Extension.create({
+  name: "arrowConversion",
+
+  addInputRules() {
+    return [
+      {
+        undoable: true,
+        find: /->/g,
+        handler: ({ state, range, chain }) => {
+          const { from, to } = range;
+          const tr = state.tr.replaceWith(from, to, state.schema.text("→"));
+          chain().insertContent(tr).run();
+        },
+      },
+    ];
+  },
+});
+
+

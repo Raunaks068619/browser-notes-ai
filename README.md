@@ -35,17 +35,26 @@ A Chrome extension that provides a powerful note-taking experience right in your
 1. **Open the side panel**
    - Click the "Lo" button that appears on any webpage
    - Or press `Cmd+.` (Mac) / `Ctrl+.` (Windows/Linux)
+   - <img width="1509" height="860" alt="Screenshot 2026-02-01 at 3 18 43 PM" src="https://github.com/user-attachments/assets/eee5a1ae-df5d-4e78-bb8a-9cdfccb1d63e" />
+
 
 2. **Start taking notes**
    - Type to add paragraphs
    - Use `/` to insert blocks (headings, code, etc.)
    - Format text with markdown shortcuts
+   - <img width="1511" height="857" alt="Screenshot 2026-02-01 at 3 19 14 PM" src="https://github.com/user-attachments/assets/17335261-6c25-4087-a3b2-86b12f2ef557" />
+
 
 3. **Use AI features** (optional)
    - Click Settings (⚙️) to add your API key
    - Switch to "AI" mode in the navbar
    - Ask questions about your notes
    - Get summaries, extract data, format content
+   - <img width="938" height="833" alt="Screenshot 2026-02-01 at 3 20 05 PM" src="https://github.com/user-attachments/assets/789d1ec1-f1e9-4248-8e83-f4f13691038c" />
+   - <img width="1512" height="855" alt="Screenshot 2026-02-01 at 3 20 28 PM" src="https://github.com/user-attachments/assets/7dc832d8-754f-4f4c-9c7d-a28e7dcf22dd" />
+   - <img width="1512" height="865" alt="Screenshot 2026-02-01 at 3 20 54 PM" src="https://github.com/user-attachments/assets/d706bafd-20c9-4cec-a5f1-496eef0d01dc" />
+
+
 
 ## 🔐 Privacy & Security
 

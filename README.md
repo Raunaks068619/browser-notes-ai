@@ -21,7 +21,21 @@ A Chrome extension that provides a powerful note-taking experience right in your
 1. Visit the [Chrome Web Store listing](#)
 2. Click "Add to Chrome"
 
+### From Pre-built Package
+If you want to install without building from source:
+
+1. Download the latest `lo-note-v1.0.0.zip` from [Releases](https://github.com/Raunaks068619/browser-notes-ai/releases)
+2. Extract the zip file to a folder on your computer
+3. Open Chrome and navigate to `chrome://extensions`
+4. Enable **Developer mode** (toggle switch in the top right)
+5. Click **Load unpacked**
+6. Select the extracted folder (contains `manifest.json`)
+7. The Lo-Note extension should now appear in your extensions list
+8. Click the "Lo" button on any webpage or use `Cmd+.` / `Ctrl+.`
+
 ### Manual Installation (Development)
+For developers who want to build from source:
+
 1. Download or clone this repository
 2. Run `npm install` to install dependencies
 3. Run `npm run build` to build the extension
